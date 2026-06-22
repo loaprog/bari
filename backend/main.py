@@ -36,7 +36,7 @@ def verificar_api_key(x_api_key: Optional[str] = Header(default=None)):
         raise HTTPException(status_code=401, detail="API key inválida ou ausente")
 
 
-@app.head("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 def health():
     return Response(status_code=200)
 
