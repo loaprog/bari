@@ -1,6 +1,6 @@
 /* ── API (backend FastAPI) ────────── */
 // Troque pela URL do seu backend depois do deploy (ex: Render).
-const API_URL = "https://SEU-BACKEND.onrender.com";
+const API_URL = "https://bari-backend-3zcp.onrender.com";
 
 async function enviarLead(dados){
   try{

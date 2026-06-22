@@ -4,10 +4,13 @@ from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
-from .. import models, schemas
-from .config import settings
-from .database import engine, get_db
+import models, schemas
+from config import settings
+from database import engine, get_db
 
+# Cria as tabelas no banco se ainda não existirem.
+# Para um projeto pequeno isso é suficiente; se o esquema crescer,
+# vale migrar para Alembic (controle de migrações).
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Avaliação Bariátrica API", version="1.0.0")
