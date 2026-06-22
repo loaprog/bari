@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
@@ -36,9 +36,9 @@ def verificar_api_key(x_api_key: Optional[str] = Header(default=None)):
         raise HTTPException(status_code=401, detail="API key inválida ou ausente")
 
 
-@app.get("/health")
+@app.head("/health")
 def health():
-    return {"status": "ok"}
+    return Response(status_code=200)
 
 
 @app.post("/api/leads", response_model=schemas.LeadOut, status_code=201)
